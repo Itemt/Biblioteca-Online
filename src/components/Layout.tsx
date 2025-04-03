@@ -2,7 +2,7 @@
 import { Link, Outlet } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
-import { LibraryBooks, PlusSquare } from "lucide-react";
+import { Library, PlusSquare } from "lucide-react";
 
 const Layout = () => {
   return (
@@ -10,7 +10,7 @@ const Layout = () => {
       <header className="border-b sticky top-0 z-10 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <LibraryBooks className="h-6 w-6" />
+            <Library className="h-6 w-6" />
             <span className="font-semibold text-xl">ShelfSide Stories</span>
           </Link>
           <nav className="flex items-center space-x-4">
