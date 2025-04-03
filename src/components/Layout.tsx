@@ -2,7 +2,7 @@
 import { Link, Outlet } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "./ThemeToggle";
-import { Library, PlusSquare } from "lucide-react";
+import { Library, PlusSquare, Shield } from "lucide-react";
 
 const Layout = () => {
   return (
@@ -18,6 +18,12 @@ const Layout = () => {
               <Button variant="ghost" className="flex items-center gap-1">
                 <PlusSquare className="h-4 w-4" />
                 <span>Add Book</span>
+              </Button>
+            </Link>
+            <Link to="/admin">
+              <Button variant="ghost" className="flex items-center gap-1">
+                <Shield className="h-4 w-4" />
+                <span>Admin</span>
               </Button>
             </Link>
             <ThemeToggle />
@@ -37,3 +43,4 @@ const Layout = () => {
 };
 
 export default Layout;
+

@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import BookDetail from "./pages/BookDetail";
 import AddBook from "./pages/AddBook";
 import EditBook from "./pages/EditBook";
+import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
                 <Route path="/books/:id" element={<BookDetail />} />
                 <Route path="/books/add" element={<AddBook />} />
                 <Route path="/books/edit/:id" element={<EditBook />} />
+                <Route path="/admin" element={<Admin />} />
                 <Route path="*" element={<NotFound />} />
               </Route>
             </Routes>
@@ -41,3 +43,4 @@ const App = () => (
 );
 
 export default App;
+

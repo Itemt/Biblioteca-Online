@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import { Edit, Trash2, BookOpen } from "lucide-react";
+import { Edit, Trash2, BookOpen, ExternalLink } from "lucide-react";
 
 const BookDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -48,6 +48,22 @@ const BookDetail = () => {
   };
 
   const formattedDate = new Date(book.addedDate).toLocaleDateString();
+  
+  // External PDF sources based on book title and author
+  const externalSources = [
+    {
+      name: "Google Books",
+      url: `https://www.google.com/search?q=${encodeURIComponent(`${book.title} ${book.author} pdf`)}`
+    },
+    {
+      name: "Open Library",
+      url: `https://openlibrary.org/search?q=${encodeURIComponent(`${book.title} ${book.author}`)}`
+    },
+    {
+      name: "Project Gutenberg",
+      url: `https://www.gutenberg.org/ebooks/search/?query=${encodeURIComponent(`${book.title} ${book.author}`)}`
+    }
+  ];
   
   return (
     <div className="max-w-5xl mx-auto">
@@ -141,6 +157,32 @@ const BookDetail = () => {
               </div>
             </CardContent>
           </Card>
+          
+          {!book.available && (
+            <Card>
+              <CardContent className="pt-6">
+                <h3 className="text-lg font-semibold mb-4">Find Digital Copy</h3>
+                <p className="text-muted-foreground mb-4">
+                  This book is currently borrowed. You may be able to find a digital copy online:
+                </p>
+                <div className="flex flex-wrap gap-4">
+                  {externalSources.map((source) => (
+                    <a 
+                      key={source.name}
+                      href={source.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      <Button variant="outline" className="flex items-center gap-2">
+                        <ExternalLink className="h-4 w-4" />
+                        {source.name}
+                      </Button>
+                    </a>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
         </div>
       </div>
     </div>
@@ -148,3 +190,4 @@ const BookDetail = () => {
 };
 
 export default BookDetail;
+
