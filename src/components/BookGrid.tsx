@@ -12,7 +12,7 @@ const BookGrid = () => {
       <div className="flex flex-col items-center justify-center py-12">
         <h3 className="text-xl font-semibold mb-2">{t('noResults')}</h3>
         <p className="text-muted-foreground">
-          {t('noResults')}
+          No se encontraron libros que coincidan con tus filtros. Intenta ajustar tus criterios de búsqueda.
         </p>
       </div>
     );
