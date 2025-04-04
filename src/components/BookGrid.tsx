@@ -1,16 +1,18 @@
 
 import BookCard from "./BookCard";
 import { useLibrary } from "@/context/LibraryContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 const BookGrid = () => {
   const { filteredBooks } = useLibrary();
+  const { t } = useLanguage();
 
   if (filteredBooks.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-12">
-        <h3 className="text-xl font-semibold mb-2">No books found</h3>
+        <h3 className="text-xl font-semibold mb-2">{t('noResults')}</h3>
         <p className="text-muted-foreground">
-          No books match your current filters. Try adjusting your search criteria.
+          {t('noResults')}
         </p>
       </div>
     );

@@ -13,7 +13,8 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('es'); // Default to Spanish
+  // Default to Spanish
+  const [language, setLanguage] = useState<Language>('es');
   
   const t = (key: string): string => {
     const keys = key.split('.');

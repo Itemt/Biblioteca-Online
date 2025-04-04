@@ -3,9 +3,11 @@ import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useLibrary } from "@/context/LibraryContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 const BookFilters = () => {
   const { books, filters, setFilters } = useLibrary();
+  const { t } = useLanguage();
   const [genres, setGenres] = useState<string[]>([]);
 
   // Extract unique genres from books
@@ -33,7 +35,7 @@ const BookFilters = () => {
     <div className="flex flex-col md:flex-row gap-4 mb-6">
       <div className="flex-grow">
         <Input
-          placeholder="Search by title, author or ISBN..."
+          placeholder={t('searchBooks')}
           value={filters.search}
           onChange={handleSearchChange}
           className="w-full"
@@ -45,10 +47,10 @@ const BookFilters = () => {
           onValueChange={handleGenreChange}
         >
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Genre" />
+            <SelectValue placeholder={t('bookGenre')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Genres</SelectItem>
+            <SelectItem value="all">{t('bookGenre')}</SelectItem>
             {genres.map((genre) => (
               <SelectItem key={genre} value={genre}>
                 {genre}
@@ -62,12 +64,12 @@ const BookFilters = () => {
           onValueChange={handleAvailabilityChange}
         >
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Availability" />
+            <SelectValue placeholder={t('bookStatus')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Books</SelectItem>
-            <SelectItem value="available">Available Only</SelectItem>
-            <SelectItem value="borrowed">Borrowed Only</SelectItem>
+            <SelectItem value="all">{t('bookStatus')}</SelectItem>
+            <SelectItem value="available">{t('bookAvailable')}</SelectItem>
+            <SelectItem value="borrowed">{t('bookBorrowed')}</SelectItem>
           </SelectContent>
         </Select>
       </div>

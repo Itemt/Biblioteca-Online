@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useLibrary } from "@/context/LibraryContext";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface BookCardProps {
   book: Book;
@@ -12,6 +13,7 @@ interface BookCardProps {
 const BookCard = ({ book }: BookCardProps) => {
   const navigate = useNavigate();
   const { toggleAvailability } = useLibrary();
+  const { t } = useLanguage();
   
   const handleCardClick = () => {
     navigate(`/books/${book.id}`);
@@ -36,7 +38,7 @@ const BookCard = ({ book }: BookCardProps) => {
           />
         ) : (
           <div className="w-full h-full bg-muted flex items-center justify-center">
-            <span className="text-muted-foreground text-sm">No cover image</span>
+            <span className="text-muted-foreground text-sm">{t('noResults')}</span>
           </div>
         )}
         <Badge 
@@ -45,7 +47,7 @@ const BookCard = ({ book }: BookCardProps) => {
           }`}
           onClick={handleAvailabilityToggle}
         >
-          {book.available ? 'Available' : 'Borrowed'}
+          {book.available ? t('bookAvailable') : t('bookBorrowed')}
         </Badge>
       </div>
       <CardContent className="flex-grow flex flex-col justify-between p-4">
