@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLibrary } from "@/context/LibraryContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +7,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { Edit, Trash2, Search, Plus } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -23,6 +24,15 @@ const Admin = () => {
   const { books, deleteBook, toggleAvailability } = useLibrary();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  const { t } = useLanguage();
+
+  useEffect(() => {
+    // Check if user is authenticated
+    const isAuthenticated = sessionStorage.getItem("adminAuthenticated") === "true";
+    if (!isAuthenticated) {
+      navigate("/admin/login");
+    }
+  }, [navigate]);
 
   const filteredBooks = books.filter((book) =>
     book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -34,19 +44,19 @@ const Admin = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-          <p className="text-muted-foreground">Manage your library collection</p>
+          <h1 className="text-3xl font-bold">{t("adminDashboard")}</h1>
+          <p className="text-muted-foreground">{t("manageLibrary")}</p>
         </div>
         <Button onClick={() => navigate("/books/add")} className="flex gap-2">
           <Plus className="h-4 w-4" />
-          Add New Book
+          {t("addNewBook")}
         </Button>
       </div>
 
       <div className="relative">
         <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="Search books..."
+          placeholder={t("searchBooks")}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="pl-10"
@@ -57,19 +67,19 @@ const Admin = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead>Title</TableHead>
-              <TableHead>Author</TableHead>
-              <TableHead>Genre</TableHead>
-              <TableHead>ISBN</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead className="w-[100px]">Actions</TableHead>
+              <TableHead>{t("bookTitle")}</TableHead>
+              <TableHead>{t("bookAuthor")}</TableHead>
+              <TableHead>{t("bookGenre")}</TableHead>
+              <TableHead>{t("bookISBN")}</TableHead>
+              <TableHead>{t("bookStatus")}</TableHead>
+              <TableHead className="w-[100px]">{t("edit")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {filteredBooks.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={6} className="h-24 text-center">
-                  No books found.
+                  {t("noResults")}
                 </TableCell>
               </TableRow>
             ) : (
@@ -99,7 +109,7 @@ const Admin = () => {
                       }`}
                       onClick={() => toggleAvailability(book.id)}
                     >
-                      {book.available ? "Available" : "Borrowed"}
+                      {book.available ? t("bookAvailable") : t("bookBorrowed")}
                     </Badge>
                   </TableCell>
                   <TableCell>
@@ -119,15 +129,15 @@ const Admin = () => {
                         </AlertDialogTrigger>
                         <AlertDialogContent>
                           <AlertDialogHeader>
-                            <AlertDialogTitle>Delete Book</AlertDialogTitle>
+                            <AlertDialogTitle>{t("delete")}</AlertDialogTitle>
                             <AlertDialogDescription>
-                              Are you sure you want to delete "{book.title}"? This action cannot be undone.
+                              {`${t("delete")} "${book.title}"? ${t("noResults")}`}
                             </AlertDialogDescription>
                           </AlertDialogHeader>
                           <AlertDialogFooter>
-                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogCancel>{t("cancel")}</AlertDialogCancel>
                             <AlertDialogAction onClick={() => deleteBook(book.id)}>
-                              Delete
+                              {t("delete")}
                             </AlertDialogAction>
                           </AlertDialogFooter>
                         </AlertDialogContent>
@@ -145,4 +155,3 @@ const Admin = () => {
 };
 
 export default Admin;
-
