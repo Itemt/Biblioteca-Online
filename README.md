@@ -1,73 +1,77 @@
-# Welcome to your Lovable project
+```markdown
+# Biblioteca Online 📚
 
-## Project info
+**Biblioteca Online** es una aplicación web desarrollada en **TypeScript** que permite registrar, visualizar y eliminar libros utilizando el almacenamiento local del navegador (`localStorage`).  
+Está enfocada en aplicar buenas prácticas de programación orientada a objetos y estructura modular en el desarrollo web.
 
-**URL**: https://lovable.dev/projects/32b2d7a9-4e18-41d2-ae51-0b3deb33318a
+## 🚀 Funcionalidades
 
-## How can I edit this code?
+- 📘 Registrar libros con título, autor, año y género.
+- 📋 Mostrar una lista de libros almacenados.
+- 🗑️ Eliminar libros individualmente desde la interfaz.
+- 💾 Guardado de datos usando `localStorage`, sin necesidad de backend.
+- 🧼 Validación básica de los campos del formulario.
+- 💡 Código limpio, organizado y fácil de mantener gracias a TypeScript.
 
-There are several ways of editing your application.
+## 🧰 Tecnologías utilizadas
 
-**Use Lovable**
+- TypeScript
+- HTML5
+- CSS3
+- localStorage
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/32b2d7a9-4e18-41d2-ae51-0b3deb33318a) and start prompting.
+## 📁 Estructura del Proyecto
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```plaintext
+📁 Biblioteca-Online/
+├── index.html
+├── css/
+│   └── estilos.css
+├── ts/
+│   ├── app.ts
+│   └── modelos/
+│       └── Libro.ts
+├── dist/
+│   └── app.js (generado automáticamente)
+└── README.md
 ```
 
-**Edit a file directly in GitHub**
+## 🧪 Cómo ejecutar el proyecto
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. Clona este repositorio:
 
-**Use GitHub Codespaces**
+   ```bash
+   git clone https://github.com/Itemt/Biblioteca-Online.git
+   ```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+2. Instala TypeScript si aún no lo tienes:
 
-## What technologies are used for this project?
+   ```bash
+   npm install -g typescript
+   ```
 
-This project is built with:
+3. Compila el proyecto:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+   ```bash
+   tsc
+   ```
 
-## How can I deploy this project?
+4. Abre `index.html` en tu navegador.
 
-Simply open [Lovable](https://lovable.dev/projects/32b2d7a9-4e18-41d2-ae51-0b3deb33318a) and click on Share -> Publish.
+> El archivo `app.js` será generado automáticamente en la carpeta `dist/` al compilar el proyecto.
 
-## Can I connect a custom domain to my Lovable project?
+## ✅ Posibles mejoras
 
-Yes it is!
+- Filtros de búsqueda por título o autor.
+- Ordenamiento por fecha o alfabéticamente.
+- Exportar e importar libros en formato JSON.
+- Adaptar el diseño para dispositivos móviles.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 📄 Licencia
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Este proyecto está bajo la Licencia MIT. 
+
+---
+
+¿Quieres convertir esta app en un proyecto más completo con backend, login o base de datos? ¡Te puedo ayudar!
+```
